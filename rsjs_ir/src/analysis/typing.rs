@@ -714,8 +714,7 @@ fn unify_arithmetic(left: ClientType, right: ClientType) -> ClientType {
         // Rust inferred as f32 (`2.0 * price` with `price: f32`). Float
         // literals always lower to `Value::Float` (typed F64), so keep the
         // F32 side regardless of operand order.
-        if lw == NumericWidth::NumberFloat
-            && (left == ClientType::F32 || right == ClientType::F32)
+        if lw == NumericWidth::NumberFloat && (left == ClientType::F32 || right == ClientType::F32)
         {
             return ClientType::F32;
         }

@@ -5370,7 +5370,11 @@ fn reactive_text_float_display_lowers_to_a_float_plan() {
             format!("\\\"precision\\\":{precision}"),
             "\\\"domain\\\":null".to_owned(),
         ] {
-            assert!(island.contains(&needle), "{needle} missing for {}", template.value());
+            assert!(
+                island.contains(&needle),
+                "{needle} missing for {}",
+                template.value()
+            );
         }
     }
 }
