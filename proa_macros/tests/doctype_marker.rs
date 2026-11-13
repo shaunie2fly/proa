@@ -5,7 +5,7 @@ use proa_core::{render_to_string, render_to_string_async};
 use proa_macros::{html, html_sync, xml_sync};
 
 #[test]
-fn html_sync_marks_doctype_as_rendered_with_proa() {
+fn html_sync_omits_proa_doctype_marker() {
     let output = render_to_string(html_sync! {
         <!DOCTYPE html>
         <html lang="en">
@@ -15,12 +15,12 @@ fn html_sync_marks_doctype_as_rendered_with_proa() {
 
     assert_eq!(
         output,
-        "<!DOCTYPE html><!-- Rendered with Proa --><html lang=\"en\"><body>Hello</body></html>"
+        "<!DOCTYPE html><html lang=\"en\"><body>Hello</body></html>"
     );
 }
 
 #[tokio::test]
-async fn html_marks_doctype_as_rendered_with_proa() {
+async fn html_omits_proa_doctype_marker() {
     let output = render_to_string_async(html! {
         <!DOCTYPE html>
         <html lang="en">
@@ -31,7 +31,7 @@ async fn html_marks_doctype_as_rendered_with_proa() {
 
     assert_eq!(
         output,
-        "<!DOCTYPE html><!-- Rendered with Proa --><html lang=\"en\"><body>Hello</body></html>"
+        "<!DOCTYPE html><html lang=\"en\"><body>Hello</body></html>"
     );
 }
 

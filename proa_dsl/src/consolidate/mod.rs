@@ -33,8 +33,6 @@ use syn::Expr;
 pub mod sink;
 pub mod walk;
 
-const PROA_DOCTYPE_MARKER: &str = "<!-- Rendered with Proa -->";
-
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum MarkupDialect {
     Html,
@@ -2634,9 +2632,6 @@ pub fn render_static_node(node: &Node, out: &mut String, dialect: MarkupDialect)
         }
         Node::Doctype(content) => {
             out.push_str(content);
-            if dialect == MarkupDialect::Html {
-                out.push_str(PROA_DOCTYPE_MARKER);
-            }
         }
         Node::Block(_) => unreachable!("Block nodes are not static"),
     }
